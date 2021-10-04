@@ -1,28 +1,25 @@
 package com.nosto.currencyconverter.services.Impl;
 
-import com.nosto.currencyconverter.dtos.responses.CurrencyConversionResponse;
 import com.nosto.currencyconverter.dtos.responses.CurrencyRateResponse;
 import com.nosto.currencyconverter.dtos.responses.ExchangeRatesCurrencyRateResponse;
 import com.nosto.currencyconverter.enums.CurrencySymbol;
 import com.nosto.currencyconverter.exceptions.ConverterServiceException;
-import com.nosto.currencyconverter.services.CurrencyConverterService;
+import com.nosto.currencyconverter.services.CurrencyRateService;
 import com.nosto.currencyconverter.utils.ApplicationConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
-import reactor.core.publisher.Mono;
 
 @Service
-public class ExchangeRatesCurrencyConverterService implements CurrencyConverterService {
+public class ExchangeRatesCurrencyRateService implements CurrencyRateService {
 
 
     private final ApplicationConstants applicationConstants;
     private final WebClient.Builder webClientBuilder;
 
     @Autowired
-    public ExchangeRatesCurrencyConverterService(ApplicationConstants applicationConstants, WebClient.Builder webClientBuilder) {
+    public ExchangeRatesCurrencyRateService(ApplicationConstants applicationConstants, WebClient.Builder webClientBuilder) {
         this.applicationConstants = applicationConstants;
         this.webClientBuilder = webClientBuilder;
     }

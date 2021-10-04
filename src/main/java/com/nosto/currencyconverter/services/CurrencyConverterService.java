@@ -1,10 +1,10 @@
 package com.nosto.currencyconverter.services;
 
-import com.nosto.currencyconverter.dtos.responses.CurrencyRateResponse;
-import com.nosto.currencyconverter.enums.CurrencySymbol;
+import com.nosto.currencyconverter.dtos.ServiceResponse;
+import com.nosto.currencyconverter.dtos.requests.CurrencyConversionRequest;
+import com.nosto.currencyconverter.dtos.responses.CurrencyConversionResponse;
 
 public interface CurrencyConverterService {
 
-    CurrencyRateResponse getCurrencyRate(CurrencySymbol baseCurrency, CurrencySymbol outputCurrency);
-
+    ServiceResponse<CurrencyConversionResponse> convertCurrency(CurrencyConversionRequest request);
 }
