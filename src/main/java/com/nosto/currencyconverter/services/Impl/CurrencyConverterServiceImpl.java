@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 @Service
@@ -46,14 +47,23 @@ public class CurrencyConverterServiceImpl implements CurrencyConverterService {
             );
             data.setBaseCurrencySymbol(currencyRateResponse.getBaseCurrencySymbol());
             data.setOutputCurrencySymbol(currencyRateResponse.getOutputCurrencySymbol());
-            data.setOutputAmount(currencyRateResponse.getRate() * data.getInputAmount());
+            data.setOutputAmount(round2dp(currencyRateResponse.getRate() * data.getInputAmount()));
             return response.setCode(Messages.SUCCESS).setMessage(Messages.GENERAL_SUCCESS_MESSAGE).setData(data);
         } catch (ConverterServiceException ex) {
+            response.setMessage(ex.getMessage());
             LOGGER.error("ERROR: {} {}", ex.getStatusCode(), ex.getMessage());
         } catch (Exception e) {
+            response.setMessage(e.getMessage());
             e.printStackTrace();
         }
         return response;
+    }
+
+
+    /* To 2 decimal places */
+    public double round2dp(double amount) {
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(amount));
     }
 
 
