@@ -2,8 +2,6 @@ package com.nosto.currencyconverter.controller;
 
 
 import com.nosto.currencyconverter.dtos.ServiceResponse;
-import com.nosto.currencyconverter.dtos.requests.CurrencyConversionRequest;
-import com.nosto.currencyconverter.dtos.responses.CurrencyConversionResponse;
 import com.nosto.currencyconverter.models.Currency;
 import com.nosto.currencyconverter.services.CurrencyService;
 import com.nosto.currencyconverter.utils.Messages;

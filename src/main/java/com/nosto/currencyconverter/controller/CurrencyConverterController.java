@@ -4,7 +4,6 @@ import com.nosto.currencyconverter.dtos.ServiceResponse;
 import com.nosto.currencyconverter.dtos.requests.CurrencyConversionRequest;
 import com.nosto.currencyconverter.dtos.responses.CurrencyConversionResponse;
 import com.nosto.currencyconverter.services.CurrencyConverterService;
-import com.nosto.currencyconverter.utils.Messages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Service;
+import javax.validation.Valid;
 
 
 @RequestMapping("api/v1/currency-converter")
@@ -30,7 +29,7 @@ public class CurrencyConverterController {
     }
 
     @RequestMapping(path = "convert", method = RequestMethod.POST)
-    public ResponseEntity<ServiceResponse<CurrencyConversionResponse>> convertCurrency(@Validated @RequestBody CurrencyConversionRequest request) {
+    public ResponseEntity<ServiceResponse<CurrencyConversionResponse>> convertCurrency(@Valid @RequestBody CurrencyConversionRequest request) {
         try {
             ServiceResponse<CurrencyConversionResponse> serviceResponse = currencyConverterService.convertCurrency(request);
             return ResponseEntity.ok(serviceResponse);
