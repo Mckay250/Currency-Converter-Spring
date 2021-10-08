@@ -2,13 +2,17 @@ package com.nosto.currencyconverter.dtos.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.nosto.currencyconverter.enums.CurrencySymbol;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExchangeRatesCurrencyRateResponse {
 
