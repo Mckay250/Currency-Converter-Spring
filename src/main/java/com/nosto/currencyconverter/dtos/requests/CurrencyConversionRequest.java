@@ -8,9 +8,9 @@ import lombok.Data;
 public class CurrencyConversionRequest {
 
     @NotNull
-    private CurrencySymbol baseCurrencySymbol;
+    private String baseCurrencySymbol;
     @NotNull
-    private CurrencySymbol outputCurrencySymbol;
+    private String outputCurrencySymbol;
     @NotNull
     private double amount;
 

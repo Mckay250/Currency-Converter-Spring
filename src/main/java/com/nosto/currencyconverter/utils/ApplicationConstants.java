@@ -6,9 +6,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationConstants {
 
-    @Value("${exchange.rates.api.key}")
+
+    @Value("${EXCHANGE_RATES_API_KEY}")
     public String exchangeRatesApiKey;
 
-    public final String exchangeRatesApiBaseUrl = "https://api.exchangeratesapi.io/v1/";
+    public final String exchangeRatesApiBaseUrl = "http://api.exchangeratesapi.io/v1/";
 
 }

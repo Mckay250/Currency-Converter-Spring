@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class CurrencyConversionResponse {
 
-    private CurrencySymbol baseCurrencySymbol;
-    private CurrencySymbol outputCurrencySymbol;
+    private String baseCurrencySymbol;
+    private String outputCurrencySymbol;
     private double inputAmount;
     private double outputAmount;
 

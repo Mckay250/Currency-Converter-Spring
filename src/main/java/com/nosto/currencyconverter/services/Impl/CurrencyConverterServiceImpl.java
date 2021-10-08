@@ -13,24 +13,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class CurrencyConverterServiceImpl implements CurrencyConverterService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CurrencyConverterServiceImpl.class);
 
-    private final CurrencyRateService currencyRateService;
-
     @Autowired
-    public CurrencyConverterServiceImpl(CurrencyRateService currencyRateService) {
-        this.currencyRateService = currencyRateService;
-    }
+    private CurrencyRateService currencyRateService;
+
 
     @Override
     public ServiceResponse<CurrencyConversionResponse> convertCurrency(CurrencyConversionRequest request) {
         ServiceResponse<CurrencyConversionResponse> response = new ServiceResponse<>(Messages.ERROR, Messages.GENERAL_ERROR_MESSAGE);
         CurrencyConversionResponse data = new CurrencyConversionResponse();
-        data.setBaseCurrencySymbol(request.getBaseCurrencySymbol());
-        data.setOutputCurrencySymbol(request.getOutputCurrencySymbol());
         data.setInputAmount(request.getAmount());
         data.setOutputAmount(request.getAmount());
 
@@ -38,12 +35,17 @@ public class CurrencyConverterServiceImpl implements CurrencyConverterService {
             return response.setMessage(Messages.ZERO_OR_NEGATIVE_AMOUNT)
                     .setData(data);
         }
+        if (Objects.equals(request.getBaseCurrencySymbol(), request.getOutputCurrencySymbol())) {
+            return response.setCode(Messages.SUCCESS).setMessage(Messages.GENERAL_SUCCESS_MESSAGE).setData(data);
+        }
 
         CurrencyRateResponse currencyRateResponse;
         try {
             currencyRateResponse = currencyRateService.getCurrencyRate(
                     request.getBaseCurrencySymbol(), request.getOutputCurrencySymbol()
             );
+            data.setBaseCurrencySymbol(currencyRateResponse.getBaseCurrencySymbol());
+            data.setOutputCurrencySymbol(currencyRateResponse.getOutputCurrencySymbol());
             data.setOutputAmount(currencyRateResponse.getRate() * data.getInputAmount());
             return response.setCode(Messages.SUCCESS).setMessage(Messages.GENERAL_SUCCESS_MESSAGE).setData(data);
         } catch (ConverterServiceException ex) {

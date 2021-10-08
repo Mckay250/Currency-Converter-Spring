@@ -5,6 +5,6 @@ import com.nosto.currencyconverter.enums.CurrencySymbol;
 
 public interface CurrencyRateService {
 
-    CurrencyRateResponse getCurrencyRate(CurrencySymbol baseCurrency, CurrencySymbol outputCurrency);
+    CurrencyRateResponse getCurrencyRate(String baseCurrency, String outputCurrency);
 
 }

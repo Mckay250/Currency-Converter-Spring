@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class CurrencyRateResponse {
 
-    private CurrencySymbol baseCurrencySymbol;
-    private CurrencySymbol outputCurrencySymbol;
+    private String baseCurrencySymbol;
+    private String outputCurrencySymbol;
     private double rate;
 }
