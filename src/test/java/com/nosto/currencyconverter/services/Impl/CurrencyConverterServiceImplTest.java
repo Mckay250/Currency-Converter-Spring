@@ -72,8 +72,7 @@ class CurrencyConverterServiceImplTest {
         ServiceResponse<CurrencyConversionResponse> actualConvertCurrencyResult = this.currencyConverterServiceImpl
                 .convertCurrency(new CurrencyConversionRequest("USD", "GBP", 10.0));
         assertEquals(96, actualConvertCurrencyResult.getCode());
-        assertEquals("An error occurred from our end while processing your request. We will fix this ASAP. Sorry for the"
-                + " inconvenience", actualConvertCurrencyResult.getMessage());
+        assertEquals("An error occurred", actualConvertCurrencyResult.getMessage());
         verify(this.currencyRateService).getCurrencyRate((String) any(), (String) any());
     }
 
