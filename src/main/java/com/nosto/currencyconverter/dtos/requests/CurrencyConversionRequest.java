@@ -1,17 +1,17 @@
 package com.nosto.currencyconverter.dtos.requests;
 
-import com.nosto.currencyconverter.enums.CurrencySymbol;
-import com.sun.istack.internal.NotNull;
 import lombok.Data;
+
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class CurrencyConversionRequest {
 
-    @NotNull
+    @NotBlank
     private String baseCurrencySymbol;
-    @NotNull
+    @NotBlank
     private String outputCurrencySymbol;
-    @NotNull
+    @NotBlank
     private double amount;
 
 }
