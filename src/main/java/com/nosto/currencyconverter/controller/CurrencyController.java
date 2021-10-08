@@ -12,8 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,12 +24,9 @@ public class CurrencyController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CurrencyController.class);
 
-    private final CurrencyService currencyService;
-
     @Autowired
-    public CurrencyController(CurrencyService currencyService) {
-        this.currencyService = currencyService;
-    }
+    private CurrencyService currencyService;
+
 
     @RequestMapping(path = "", method = RequestMethod.GET)
     public ResponseEntity<ServiceResponse<List<Currency>>> fetchCurrencies() {

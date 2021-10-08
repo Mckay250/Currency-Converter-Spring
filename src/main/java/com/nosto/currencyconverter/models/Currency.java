@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 @Entity
@@ -19,7 +17,7 @@ import javax.persistence.Id;
 public class Currency {
     @Id
     private Long id;
-    @Enumerated(EnumType.STRING)
-    CurrencySymbol currencySymbol;
+    String currencySymbol;
     String currencyName;
+    String currencyCode;
 }
