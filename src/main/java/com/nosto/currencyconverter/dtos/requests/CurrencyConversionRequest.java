@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Data
@@ -11,11 +12,11 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class CurrencyConversionRequest {
 
-    @NotBlank
+    @NotBlank(message = "base currency symbol is required")
     private String baseCurrencySymbol;
-    @NotBlank
+    @NotBlank(message = "output currency symbol is required")
     private String outputCurrencySymbol;
-    @NotBlank
+    @Min(1)
     private double amount;
 
 }
